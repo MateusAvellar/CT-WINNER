@@ -41,6 +41,20 @@ Inclusão, saúde, educação e desenvolvimento social. Combate à visão estere
 - ✅ Fotos reais do CT Winner integradas
 - ✅ Testes passando 100% (backend + frontend)
 
+## Atualizações (iteração 4 - Abr 2026)
+- ✅ Grade de horários completamente refeita com detalhe de turmas Kids / Adulto:
+  - **Taekwondo** (Mestre Carlos Wagner): Seg/Qua/Sex Kids 18h-19h + Adulto 19h-20h; Ter/Qui Todos 17h-18h + Adulto 21h-22h
+  - **Jiu-Jitsu**: Seg/Qua Kids (Leonardo) 19h + Adulto (Bruno Souza) 20h-21h; Sex Adulto 20h-21h
+  - **Karatê Adulto** (Eduardo Vieira): Seg/Qua 20h-21h
+  - **Teatro Kids** (Girassol Music): Sex 18h-19h
+  - **Judô** (Diego Correia): Ter/Qui Kids 18h-19h + Adulto 20h-21h
+  - **Boxe** (Breno Constantino): Ter/Qui 21h-22h
+  - **Muay-Thai** (Wallace Conceição): Ter/Qui 20h-21h
+- ✅ 26 slots no total (antes eram 19)
+- ✅ Novas imagens adicionadas à galeria "O CT em imagens":
+  - Bandeira oficial Equipe Winner — Mestre Carlos Wagner (com medalha + troféu)
+  - 31 atletas classificados para o Campeonato Brasileiro (28 ouro, 3 prata, 5 bronze)
+
 ## Atualizações (iteração 3 - Abr 2026)
 - ✅ Copa Winner: data **24 de maio de 2026**, local **R. Dias da Cruz, 561 — Méier · Sport Club Mackenzie**
 - ✅ Cartaz oficial da Copa Winner integrado na página Eventos (imagem grande + CTA "Quero participar")

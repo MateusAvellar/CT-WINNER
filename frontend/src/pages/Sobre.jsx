@@ -8,7 +8,9 @@ const valores = [
 
 const galeria = [
   { src: "/images/equipe-taekwondo.jpeg", caption: "Equipe CT Winner · Taekwondo", tall: true },
+  { src: "/images/bandeira-winner.jpeg", caption: "Bandeira oficial · Mestre Carlos Wagner" },
   { src: "/images/faixas-pretas.jpeg", caption: "Atletas formados · Faixas-pretas" },
+  { src: "/images/atletas-brasileiro.jpeg", caption: "31 atletas classificados · Campeonato Brasileiro" },
   { src: "/images/titulo1.jpeg", caption: "Conquistas em competições" },
   { src: "/images/ilustrativa.jpeg", caption: "Combate infantil em torneio" },
   { src: "/images/sala-tkd.jpeg", caption: "Sala principal · dia de evento" },

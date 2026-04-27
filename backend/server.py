@@ -165,29 +165,36 @@ async def on_startup():
     if await db.schedule_slots.count_documents({}) == 0:
         seed_schedule = [
             # Segunda
-            {"day": "segunda", "start_time": "18:00", "end_time": "19:00", "modality": "Jiu-Jitsu Kids", "professor": "Prof. Leonardo"},
-            {"day": "segunda", "start_time": "19:00", "end_time": "20:00", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
-            {"day": "segunda", "start_time": "20:00", "end_time": "21:00", "modality": "Muay-Thai", "professor": "Prof. Wallace Conceição"},
-            {"day": "segunda", "start_time": "21:00", "end_time": "22:00", "modality": "Jiu-Jitsu", "professor": "Prof. Bruno Souza"},
+            {"day": "segunda", "start_time": "18:00", "end_time": "19:00", "modality": "Taekwondo Kids", "professor": "Mestre Carlos Wagner"},
+            {"day": "segunda", "start_time": "19:00", "end_time": "20:00", "modality": "Taekwondo Adulto", "professor": "Mestre Carlos Wagner"},
+            {"day": "segunda", "start_time": "19:00", "end_time": "20:00", "modality": "Jiu-Jitsu Kids", "professor": "Prof. Leonardo"},
+            {"day": "segunda", "start_time": "20:00", "end_time": "21:00", "modality": "Jiu-Jitsu Adulto", "professor": "Prof. Bruno Souza"},
+            {"day": "segunda", "start_time": "20:00", "end_time": "21:00", "modality": "Karatê Adulto", "professor": "Prof. Eduardo Vieira"},
             # Terça
-            {"day": "terca", "start_time": "18:00", "end_time": "19:00", "modality": "Karatê", "professor": "Prof. Eduardo Vieira"},
-            {"day": "terca", "start_time": "19:00", "end_time": "20:00", "modality": "Boxe", "professor": "Prof. Breno Constantino"},
-            {"day": "terca", "start_time": "20:00", "end_time": "21:00", "modality": "Judô", "professor": "Prof. Diego Correia"},
-            {"day": "terca", "start_time": "21:00", "end_time": "22:30", "modality": "Teatro", "professor": "Girassol Music"},
+            {"day": "terca", "start_time": "17:00", "end_time": "18:00", "modality": "Taekwondo (Todos)", "professor": "Mestre Carlos Wagner"},
+            {"day": "terca", "start_time": "18:00", "end_time": "19:00", "modality": "Judô Kids", "professor": "Prof. Diego Correia"},
+            {"day": "terca", "start_time": "20:00", "end_time": "21:00", "modality": "Muay-Thai", "professor": "Prof. Wallace Conceição"},
+            {"day": "terca", "start_time": "20:00", "end_time": "21:00", "modality": "Judô Adulto", "professor": "Prof. Diego Correia"},
+            {"day": "terca", "start_time": "21:00", "end_time": "22:00", "modality": "Taekwondo Adulto", "professor": "Mestre Carlos Wagner"},
+            {"day": "terca", "start_time": "21:00", "end_time": "22:00", "modality": "Boxe", "professor": "Prof. Breno Constantino"},
             # Quarta
-            {"day": "quarta", "start_time": "18:00", "end_time": "19:00", "modality": "Jiu-Jitsu Kids", "professor": "Prof. Leonardo"},
-            {"day": "quarta", "start_time": "19:00", "end_time": "20:00", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
-            {"day": "quarta", "start_time": "20:00", "end_time": "21:00", "modality": "Muay-Thai", "professor": "Prof. Wallace Conceição"},
-            {"day": "quarta", "start_time": "21:00", "end_time": "22:00", "modality": "Jiu-Jitsu", "professor": "Prof. Bruno Souza"},
+            {"day": "quarta", "start_time": "18:00", "end_time": "19:00", "modality": "Taekwondo Kids", "professor": "Mestre Carlos Wagner"},
+            {"day": "quarta", "start_time": "19:00", "end_time": "20:00", "modality": "Taekwondo Adulto", "professor": "Mestre Carlos Wagner"},
+            {"day": "quarta", "start_time": "19:00", "end_time": "20:00", "modality": "Jiu-Jitsu Kids", "professor": "Prof. Leonardo"},
+            {"day": "quarta", "start_time": "20:00", "end_time": "21:00", "modality": "Jiu-Jitsu Adulto", "professor": "Prof. Bruno Souza"},
+            {"day": "quarta", "start_time": "20:00", "end_time": "21:00", "modality": "Karatê Adulto", "professor": "Prof. Eduardo Vieira"},
             # Quinta
-            {"day": "quinta", "start_time": "18:00", "end_time": "19:00", "modality": "Karatê", "professor": "Prof. Eduardo Vieira"},
-            {"day": "quinta", "start_time": "19:00", "end_time": "20:00", "modality": "Boxe", "professor": "Prof. Breno Constantino"},
-            {"day": "quinta", "start_time": "20:00", "end_time": "21:00", "modality": "Judô", "professor": "Prof. Diego Correia"},
+            {"day": "quinta", "start_time": "17:00", "end_time": "18:00", "modality": "Taekwondo (Todos)", "professor": "Mestre Carlos Wagner"},
+            {"day": "quinta", "start_time": "18:00", "end_time": "19:00", "modality": "Judô Kids", "professor": "Prof. Diego Correia"},
+            {"day": "quinta", "start_time": "20:00", "end_time": "21:00", "modality": "Muay-Thai", "professor": "Prof. Wallace Conceição"},
+            {"day": "quinta", "start_time": "20:00", "end_time": "21:00", "modality": "Judô Adulto", "professor": "Prof. Diego Correia"},
+            {"day": "quinta", "start_time": "21:00", "end_time": "22:00", "modality": "Taekwondo Adulto", "professor": "Mestre Carlos Wagner"},
+            {"day": "quinta", "start_time": "21:00", "end_time": "22:00", "modality": "Boxe", "professor": "Prof. Breno Constantino"},
             # Sexta
-            {"day": "sexta", "start_time": "18:00", "end_time": "19:00", "modality": "Jiu-Jitsu Kids", "professor": "Prof. Leonardo"},
-            {"day": "sexta", "start_time": "19:00", "end_time": "20:00", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
-            {"day": "sexta", "start_time": "20:00", "end_time": "21:00", "modality": "Muay-Thai", "professor": "Prof. Wallace Conceição"},
-            {"day": "sexta", "start_time": "21:00", "end_time": "22:30", "modality": "Jiu-Jitsu", "professor": "Prof. Bruno Souza"},
+            {"day": "sexta", "start_time": "18:00", "end_time": "19:00", "modality": "Taekwondo Kids", "professor": "Mestre Carlos Wagner"},
+            {"day": "sexta", "start_time": "18:00", "end_time": "19:00", "modality": "Teatro Kids", "professor": "Girassol Music"},
+            {"day": "sexta", "start_time": "19:00", "end_time": "20:00", "modality": "Taekwondo Adulto", "professor": "Mestre Carlos Wagner"},
+            {"day": "sexta", "start_time": "20:00", "end_time": "21:00", "modality": "Jiu-Jitsu Adulto", "professor": "Prof. Bruno Souza"},
         ]
         for s in seed_schedule:
             s["id"] = str(uuid.uuid4())
