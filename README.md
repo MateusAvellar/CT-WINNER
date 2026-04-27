@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     
 </head>
-<body style="background-color: #102050;"> <img src="frontend\public\images\readmeimg.png" alt="Logo CT Winner - Esporte, Cultura, Inclusão">
+<body style="background-color: #102050;"> <img src="frontend\public\images\img.png" alt="Logo CT Winner - Esporte, Cultura, Inclusão">
 
 
 CT Winner: Esporte, Cultura e Inclusão
