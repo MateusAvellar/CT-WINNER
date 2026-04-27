@@ -21,17 +21,11 @@ export default function Header() {
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8">
         <Link to="/" className="flex items-center gap-3" data-testid="logo-home-link">
-          <div className="flex h-10 w-10 items-center justify-center bg-[color:var(--ct-blue)] font-display text-2xl text-white">
-            W
-          </div>
-          <div className="leading-none">
-            <div className="font-display text-2xl tracking-tight text-[color:var(--ct-blue-dark)]">
-              CT WINNER
-            </div>
-            <div className="text-[10px] uppercase tracking-[0.25em] text-slate-500">
-              Centro de Treinamento
-            </div>
-          </div>
+          <img
+            src="/images/logo-main.png"
+            alt="CT Winner — Centro de Treinamento"
+            className="h-12 w-auto sm:h-14"
+          />
         </Link>
 
         <nav className="hidden items-center gap-7 md:flex">

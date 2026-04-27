@@ -1,23 +1,32 @@
 import React from "react";
 import { api, DAY_LABELS, DAYS_ORDER } from "../lib/ctw";
 
-function isNowInSlot(slot, now) {
-  const dayIdx = (now.getDay() + 6) % 7; // Monday=0
-  const dayKey = DAYS_ORDER[dayIdx];
-  if (slot.day !== dayKey) return false;
-  const hhmm = now.toLocaleTimeString("pt-BR", {
-    timeZone: "America/Sao_Paulo", hour: "2-digit", minute: "2-digit", hour12: false,
-  });
-  return slot.start_time <= hhmm && hhmm < slot.end_time;
+// Returns the current Brasília day key ("segunda"..."domingo") and HH:MM
+function getBrasiliaNow() {
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "America/Sao_Paulo",
+    weekday: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).formatToParts(new Date());
+  const get = (k) => parts.find((p) => p.type === k)?.value || "";
+  const map = {
+    Mon: "segunda", Tue: "terca", Wed: "quarta", Thu: "quinta",
+    Fri: "sexta", Sat: "sabado", Sun: "domingo",
+  };
+  let hour = get("hour");
+  if (hour === "24") hour = "00"; // Intl sometimes returns 24
+  return { day: map[get("weekday")] || "segunda", time: `${hour}:${get("minute")}` };
 }
 
 export default function Horarios() {
   const [slots, setSlots] = React.useState([]);
-  const [now, setNow] = React.useState(new Date());
+  const [brNow, setBrNow] = React.useState(getBrasiliaNow());
 
   React.useEffect(() => {
     api.get("/schedule").then((r) => setSlots(r.data)).catch(() => {});
-    const t = setInterval(() => setNow(new Date()), 30000);
+    const t = setInterval(() => setBrNow(getBrasiliaNow()), 30000);
     return () => clearInterval(t);
   }, []);
 
@@ -26,51 +35,52 @@ export default function Horarios() {
     return acc;
   }, {});
 
-  // Get Brasilia day for highlight
-  const brDay = new Date(now.toLocaleString("en-US", { timeZone: "America/Sao_Paulo" }));
-  const brDayIdx = (brDay.getDay() + 6) % 7;
-  const brDayKey = DAYS_ORDER[brDayIdx];
-  const brTimeStr = brDay.toLocaleTimeString("pt-BR", { hour: "2-digit", minute: "2-digit" });
+  const isActive = (slot) =>
+    slot.day === brNow.day && slot.start_time <= brNow.time && brNow.time < slot.end_time;
+
+  const hasAnyActive = slots.some(isActive);
 
   return (
     <div data-testid="horarios-page">
       <section className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
           <div className="text-xs font-bold uppercase tracking-[0.3em] text-[color:var(--ct-red)]">
             / Grade de Horários
           </div>
-          <h1 className="mt-3 font-display text-6xl uppercase leading-none text-[color:var(--ct-blue-dark)] md:text-7xl">
+          <h1 className="mt-2 font-display text-5xl uppercase leading-none text-[color:var(--ct-blue-dark)] md:text-6xl">
             Quando<br />treinar.
           </h1>
-          <div className="mt-6 flex flex-wrap items-center gap-4 text-sm">
-            <div className="flex items-center gap-2 bg-slate-100 px-3 py-2">
-              <span className="ct-live-dot" />
-              <span className="font-semibold text-slate-700">Aula acontecendo agora</span>
-            </div>
+          <div className="mt-5 flex flex-wrap items-center gap-4 text-sm">
+            {hasAnyActive && (
+              <div className="flex items-center gap-2 bg-green-50 px-3 py-2" data-testid="legend-active">
+                <span className="ct-live-dot" />
+                <span className="font-semibold text-green-800">Aula acontecendo agora</span>
+              </div>
+            )}
             <div className="text-slate-500">
-              Horário de Brasília: <span className="font-semibold">{brTimeStr}</span>
+              Horário de Brasília: <span className="font-semibold">{brNow.time}</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {DAYS_ORDER.map((d) => (
+      <section className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          {DAYS_ORDER.filter((d) => grouped[d].length > 0 || d === brNow.day).map((d) => (
             <div
               key={d}
-              className={`border p-6 ${
-                d === brDayKey
+              className={`border p-5 ${
+                d === brNow.day
                   ? "border-[color:var(--ct-blue)] bg-gradient-to-br from-white to-blue-50"
                   : "border-slate-200 bg-white"
               }`}
               data-testid={`day-card-${d}`}
             >
-              <div className="mb-4 flex items-center justify-between">
-                <h3 className="font-display text-3xl uppercase tracking-tight text-[color:var(--ct-blue-dark)]">
+              <div className="mb-3 flex items-center justify-between">
+                <h3 className="font-display text-2xl uppercase tracking-tight text-[color:var(--ct-blue-dark)]">
                   {DAY_LABELS[d]}
                 </h3>
-                {d === brDayKey && (
+                {d === brNow.day && (
                   <span className="bg-[color:var(--ct-red)] px-2 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
                     Hoje
                   </span>
@@ -79,9 +89,9 @@ export default function Horarios() {
               {grouped[d].length === 0 ? (
                 <p className="text-sm text-slate-400">Sem aulas neste dia.</p>
               ) : (
-                <ul className="space-y-3">
+                <ul className="space-y-2.5">
                   {grouped[d].map((s) => {
-                    const live = isNowInSlot(s, now);
+                    const live = isActive(s);
                     return (
                       <li
                         key={s.id}
@@ -95,10 +105,10 @@ export default function Horarios() {
                         </div>
                         <div className="flex-1">
                           <div className="flex items-baseline justify-between gap-2">
-                            <span className="font-display text-xl text-[color:var(--ct-blue-dark)]">
+                            <span className="font-display text-lg text-[color:var(--ct-blue-dark)]">
                               {s.modality}
                             </span>
-                            <span className="font-mono text-sm text-slate-600">
+                            <span className="font-mono text-xs text-slate-600">
                               {s.start_time}–{s.end_time}
                             </span>
                           </div>
@@ -112,6 +122,9 @@ export default function Horarios() {
             </div>
           ))}
         </div>
+        <p className="mt-8 text-sm text-slate-500">
+          * Sábado e domingo não há treinos presenciais. Aulas de segunda a sexta até 22h30.
+        </p>
       </section>
     </div>
   );

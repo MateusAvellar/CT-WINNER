@@ -147,37 +147,45 @@ async def on_startup():
     if await db.modalities.count_documents({}) == 0:
         seed_mods = [
             {"name": "Taekwondo", "description": "Arte marcial coreana focada em chutes potentes, equilíbrio e disciplina mental.", "target_audience": "A partir de 4 anos • todos os níveis", "benefits": "Disciplina, foco, flexibilidade, autoconfiança", "icon": "flame", "order": 1},
-            {"name": "Jiu-Jitsu", "description": "Arte suave: alavancas e técnicas de solo para todos os biotipos.", "target_audience": "Crianças, adolescentes e adultos", "benefits": "Autocontrole, resolução de problemas, condicionamento", "icon": "shield", "order": 2},
-            {"name": "Muay-Thai", "description": "Arte das oito armas — punhos, cotovelos, joelhos e chutes.", "target_audience": "A partir de 12 anos", "benefits": "Força, cardio, coordenação, foco", "icon": "swords", "order": 3},
-            {"name": "Boxe", "description": "A nobre arte. Técnica de mãos, esquivas e ritmo.", "target_audience": "A partir de 10 anos", "benefits": "Condicionamento, reflexo, autoestima", "icon": "target", "order": 4},
-            {"name": "Judô", "description": "Caminho suave: projeções e filosofia para a vida toda.", "target_audience": "Crianças e adultos", "benefits": "Respeito, disciplina, equilíbrio", "icon": "users", "order": 5},
-            {"name": "Karatê", "description": "Tradição japonesa de katas e postura firme.", "target_audience": "A partir de 6 anos", "benefits": "Postura, foco, respeito", "icon": "mountain", "order": 6},
-            {"name": "Teatro", "description": "Expressão corporal, voz e cena para transformar a timidez em presença.", "target_audience": "Crianças, jovens e adultos", "benefits": "Criatividade, comunicação, confiança", "icon": "drama", "order": 7},
-            {"name": "Balé", "description": "Graça, técnica e cultura clássica em aulas acolhedoras.", "target_audience": "A partir de 4 anos", "benefits": "Postura, sensibilidade artística, disciplina", "icon": "music", "order": 8},
+            {"name": "Jiu-Jitsu", "description": "Arte suave: alavancas e técnicas de solo para todos os biotipos.", "target_audience": "Adolescentes e adultos", "benefits": "Autocontrole, resolução de problemas, condicionamento", "icon": "shield", "order": 2},
+            {"name": "Jiu-Jitsu Kids", "description": "Jiu-Jitsu com metodologia lúdica e adaptada para crianças.", "target_audience": "Crianças de 4 a 12 anos", "benefits": "Coordenação, autoconfiança, respeito", "icon": "users", "order": 3},
+            {"name": "Muay-Thai", "description": "Arte das oito armas — punhos, cotovelos, joelhos e chutes.", "target_audience": "A partir de 12 anos", "benefits": "Força, cardio, coordenação, foco", "icon": "swords", "order": 4},
+            {"name": "Boxe", "description": "A nobre arte. Técnica de mãos, esquivas e ritmo.", "target_audience": "A partir de 10 anos", "benefits": "Condicionamento, reflexo, autoestima", "icon": "target", "order": 5},
+            {"name": "Judô", "description": "Caminho suave: projeções e filosofia para a vida toda.", "target_audience": "Crianças e adultos", "benefits": "Respeito, disciplina, equilíbrio", "icon": "users", "order": 6},
+            {"name": "Karatê", "description": "Tradição japonesa de katas e postura firme.", "target_audience": "A partir de 6 anos", "benefits": "Postura, foco, respeito", "icon": "mountain", "order": 7},
+            {"name": "Teatro", "description": "Expressão corporal, voz e cena para transformar a timidez em presença.", "target_audience": "Crianças, jovens e adultos", "benefits": "Criatividade, comunicação, confiança", "icon": "drama", "order": 8},
         ]
         for m in seed_mods:
             m["id"] = str(uuid.uuid4())
         await db.modalities.insert_many(seed_mods)
 
-    # Seed schedule if empty
+    # Seed schedule if empty (Segunda-Sexta, SEM sábado/domingo)
     if await db.schedule_slots.count_documents({}) == 0:
         seed_schedule = [
-            {"day": "segunda", "start_time": "07:00", "end_time": "08:00", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
-            {"day": "segunda", "start_time": "18:00", "end_time": "19:00", "modality": "Jiu-Jitsu", "professor": "Prof. Rafael"},
-            {"day": "segunda", "start_time": "19:00", "end_time": "20:00", "modality": "Muay-Thai", "professor": "Prof. Ricardo"},
-            {"day": "terca", "start_time": "17:00", "end_time": "18:00", "modality": "Balé", "professor": "Prof. Juliana"},
-            {"day": "terca", "start_time": "18:00", "end_time": "19:00", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
-            {"day": "terca", "start_time": "19:30", "end_time": "20:30", "modality": "Boxe", "professor": "Prof. Marcos"},
-            {"day": "quarta", "start_time": "17:00", "end_time": "18:00", "modality": "Karatê", "professor": "Sensei Paulo"},
-            {"day": "quarta", "start_time": "18:30", "end_time": "19:30", "modality": "Jiu-Jitsu", "professor": "Prof. Rafael"},
-            {"day": "quarta", "start_time": "20:00", "end_time": "21:00", "modality": "Teatro", "professor": "Prof. Beatriz"},
-            {"day": "quinta", "start_time": "17:00", "end_time": "18:00", "modality": "Balé", "professor": "Prof. Juliana"},
-            {"day": "quinta", "start_time": "18:00", "end_time": "19:00", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
-            {"day": "quinta", "start_time": "19:30", "end_time": "20:30", "modality": "Muay-Thai", "professor": "Prof. Ricardo"},
-            {"day": "sexta", "start_time": "17:00", "end_time": "18:00", "modality": "Judô", "professor": "Sensei Tanaka"},
-            {"day": "sexta", "start_time": "18:30", "end_time": "19:30", "modality": "Boxe", "professor": "Prof. Marcos"},
-            {"day": "sabado", "start_time": "09:00", "end_time": "10:30", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
-            {"day": "sabado", "start_time": "10:30", "end_time": "12:00", "modality": "Jiu-Jitsu", "professor": "Prof. Rafael"},
+            # Segunda
+            {"day": "segunda", "start_time": "18:00", "end_time": "19:00", "modality": "Jiu-Jitsu Kids", "professor": "Prof. Leonardo"},
+            {"day": "segunda", "start_time": "19:00", "end_time": "20:00", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
+            {"day": "segunda", "start_time": "20:00", "end_time": "21:00", "modality": "Muay-Thai", "professor": "Prof. Wallace Conceição"},
+            {"day": "segunda", "start_time": "21:00", "end_time": "22:00", "modality": "Jiu-Jitsu", "professor": "Prof. Bruno Souza"},
+            # Terça
+            {"day": "terca", "start_time": "18:00", "end_time": "19:00", "modality": "Karatê", "professor": "Prof. Eduardo Vieira"},
+            {"day": "terca", "start_time": "19:00", "end_time": "20:00", "modality": "Boxe", "professor": "Prof. Breno Constantino"},
+            {"day": "terca", "start_time": "20:00", "end_time": "21:00", "modality": "Judô", "professor": "Prof. Diego Correia"},
+            {"day": "terca", "start_time": "21:00", "end_time": "22:30", "modality": "Teatro", "professor": "Girassol Music"},
+            # Quarta
+            {"day": "quarta", "start_time": "18:00", "end_time": "19:00", "modality": "Jiu-Jitsu Kids", "professor": "Prof. Leonardo"},
+            {"day": "quarta", "start_time": "19:00", "end_time": "20:00", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
+            {"day": "quarta", "start_time": "20:00", "end_time": "21:00", "modality": "Muay-Thai", "professor": "Prof. Wallace Conceição"},
+            {"day": "quarta", "start_time": "21:00", "end_time": "22:00", "modality": "Jiu-Jitsu", "professor": "Prof. Bruno Souza"},
+            # Quinta
+            {"day": "quinta", "start_time": "18:00", "end_time": "19:00", "modality": "Karatê", "professor": "Prof. Eduardo Vieira"},
+            {"day": "quinta", "start_time": "19:00", "end_time": "20:00", "modality": "Boxe", "professor": "Prof. Breno Constantino"},
+            {"day": "quinta", "start_time": "20:00", "end_time": "21:00", "modality": "Judô", "professor": "Prof. Diego Correia"},
+            # Sexta
+            {"day": "sexta", "start_time": "18:00", "end_time": "19:00", "modality": "Jiu-Jitsu Kids", "professor": "Prof. Leonardo"},
+            {"day": "sexta", "start_time": "19:00", "end_time": "20:00", "modality": "Taekwondo", "professor": "Mestre Carlos Wagner"},
+            {"day": "sexta", "start_time": "20:00", "end_time": "21:00", "modality": "Muay-Thai", "professor": "Prof. Wallace Conceição"},
+            {"day": "sexta", "start_time": "21:00", "end_time": "22:30", "modality": "Jiu-Jitsu", "professor": "Prof. Bruno Souza"},
         ]
         for s in seed_schedule:
             s["id"] = str(uuid.uuid4())
@@ -186,9 +194,7 @@ async def on_startup():
     # Seed events if empty
     if await db.events.count_documents({}) == 0:
         seed_events = [
-            {"id": str(uuid.uuid4()), "name": "Copa Zona Norte de Taekwondo", "date": "2026-05-24", "description": "Competição interna com participação dos alunos do CT Winner. Troféus, medalhas e muito aprendizado.", "location": "CT Winner — Méier"},
-            {"id": str(uuid.uuid4()), "name": "Aula Aberta para a Família", "date": "2026-06-14", "description": "Traga sua família para experimentar uma aula gratuita. Todas as modalidades abertas para experiência.", "location": "CT Winner — Méier"},
-            {"id": str(uuid.uuid4()), "name": "Apresentação de Teatro e Balé", "date": "2026-07-05", "description": "Mostra cultural com performances dos alunos das turmas de balé e teatro.", "location": "CT Winner — Méier"},
+            {"id": str(uuid.uuid4()), "name": "Copa Winner", "date": "2026-06-21", "description": "Torneio de Taekwondo que reúne grandes equipes do Rio de Janeiro. Um dia de competição, técnica e muita emoção no CT Winner.", "location": "CT Winner — Méier"},
         ]
         await db.events.insert_many(seed_events)
 

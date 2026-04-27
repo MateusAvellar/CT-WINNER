@@ -33,13 +33,33 @@ Inclusão, saúde, educação e desenvolvimento social. Combate à visão estere
 - ✅ Endpoint `/api/schedule/current` com timezone Brasília
 - ✅ Admin seeding de admin@ctwinner.com
 - ✅ 7 páginas públicas + admin login + admin dashboard
-- ✅ Ponto verde piscante em aula ao vivo
-- ✅ Header sticky com nav, Instagram, CTA Aula Experimental
-- ✅ Footer com logo secundária do cliente
+- ✅ Ponto verde piscante apenas quando há aula ao vivo (fuso de Brasília)
+- ✅ Header sticky com logo oficial do CT Winner (triângulo + punho + texto)
+- ✅ Footer com logo secundária (fundo transparente via PNG processado)
 - ✅ Botão flutuante WhatsApp
 - ✅ Google Maps incorporado
 - ✅ Fotos reais do CT Winner integradas
 - ✅ Testes passando 100% (backend + frontend)
+
+## Atualizações (iteração 2 - Abr 2026)
+- ✅ Home mais compacto (menos scroll): `py-24` → `py-14/16`, valores integrados
+- ✅ Vermelho mais intenso: `#E63946` → `#E10600`
+- ✅ Logo oficial no header (WINNER com triângulo/punho/texto) via PNG processado
+- ✅ Logo secundária no footer sem fundo branco (PNG com transparência)
+- ✅ Data de fundação: 2018 (8 anos de CT no Méier)
+- ✅ Ponto verde piscante apenas em horários de aula real
+- ✅ Dia corretamente calculado no fuso de Brasília via `Intl.DateTimeFormat`
+- ✅ Grade de horários atualizada (sem sábado/domingo):
+  - Seg/Qua/Sex: Jiu-Jitsu Kids (Leonardo), Taekwondo (Carlos Wagner), Muay-Thai (Wallace Conceição), Jiu-Jitsu (Bruno Souza)
+  - Ter/Qui: Karatê (Eduardo Vieira), Boxe (Breno Constantino), Judô (Diego Correia)
+  - Ter: Teatro (Girassol Music)
+- ✅ Taekwondo 19h–20h (não mais 7h)
+- ✅ Jiu-Jitsu Kids adicionado como modalidade
+- ✅ Balé removido (sem professor designado)
+- ✅ Único evento: Copa Winner — Torneio de Taekwondo que reúne grandes equipes do RJ
+- ✅ Footer funcionamento: Seg–Sex até 22h30 / Sábado e Domingo fechado
+- ✅ Timeline removida da página Sobre
+- ✅ Copyright atualizado para "Desde 2018"
 
 ## Backlog / Futuro
 - **P1:** Galeria de fotos/vídeos com upload via admin

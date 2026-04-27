@@ -7,8 +7,8 @@
 :root {
   --ct-blue: #0033A0;
   --ct-blue-dark: #0B205A;
-  --ct-red: #E63946;
-  --ct-red-dark: #B02A35;
+  --ct-red: #E10600;
+  --ct-red-dark: #B00500;
   --ct-bg: #F8FAFC;
   --ct-border: #E2E8F0;
   --ct-text: #0F172A;
@@ -50,7 +50,7 @@ html, body, #root {
 .ct-cta:hover {
   background: var(--ct-red-dark);
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(230, 57, 70, 0.35);
+  box-shadow: 0 10px 28px rgba(225, 6, 0, 0.45);
 }
 
 .ct-outline {
