@@ -1,0 +1,92 @@
+{
+  "project_name": "Centro de Treinamento Winner (CT Winner)",
+  "theme": "Light",
+  "archetype": "Archetype 2: The Performance Pro (Adapted for Community Hub)",
+  "color_palette": {
+    "primary": "#0033A0",
+    "primary_dark": "#0B205A",
+    "secondary": "#FFFFFF",
+    "accent": "#E63946",
+    "neutral_bg": "#F8FAFC",
+    "neutral_border": "#E2E8F0",
+    "text_main": "#0F172A",
+    "text_muted": "#64748B",
+    "success": "#10B981"
+  },
+  "typography": {
+    "heading_font": "Bebas Neue",
+    "body_font": "Outfit",
+    "hierarchy": {
+      "h1": "text-5xl sm:text-6xl tracking-tighter uppercase",
+      "h2": "text-4xl sm:text-5xl tracking-tight uppercase",
+      "h3": "text-2xl sm:text-3xl tracking-tight",
+      "body": "text-base leading-relaxed",
+      "overline": "text-sm uppercase tracking-[0.2em] font-bold text-red-600"
+    }
+  },
+  "layout_and_spacing": {
+    "spacing_system": "Generous spacing. Use p-8, p-12, py-24 for marketing sections.",
+    "grid_mode": "MODE A: 'Tetris' Grid for Activities bento box. MODE B: 'Control Room' for Admin Dashboard.",
+    "alignment": "Optical alignment, mostly left-aligned text blocks with bold headers. Asymmetric layouts preferred.",
+    "corners": "rounded-none or max rounded-sm for a sharp, disciplined athletic feel."
+  },
+  "components": {
+    "buttons": "Sharp edges, high contrast. Primary CTA: bg-[#E63946] text-white hover:bg-red-700. Secondary: border-2 border-[#0033A0] text-[#0033A0] hover:bg-[#0033A0] hover:text-white.",
+    "cards": "Flat background, 1px subtle border, no shadow by default. Hover: slight lift (-translate-y-1) and shadow-lg.",
+    "schedule_table": "Custom grid or list. MUST include a blinking green dot (`animate-pulse bg-green-500 rounded-full h-3 w-3 inline-block`) next to the current active class.",
+    "header": "Sticky with backdrop-blur-xl bg-white/90. High contrast nav links.",
+    "footer": "Deep blue background (bg-[#0B205A]) with white text. Incorporate the secondary logo (triangle with fist in black/orange/yellow) here."
+  },
+  "media_and_images": [
+    {
+      "category": "hero_background",
+      "url": "https://images.unsplash.com/photo-1771909720903-c4567a890a6f?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwzfHxtYXJ0aWFsJTIwYXJ0cyUyMGRvam98ZW58MHx8fHwxNzc3MjkyNjYxfDA&ixlib=rb-4.1.0&q=85",
+      "description": "Empty indoor stadium with blue and red mat. Use as a fallback if the user's real local photo is not found. Overlay with black/blue gradient to ensure text readability."
+    },
+    {
+      "category": "kids_martial_arts",
+      "url": "https://images.pexels.com/photos/7045594/pexels-photo-7045594.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Kids learning martial arts, representing inclusion and family-friendly dojo."
+    },
+    {
+      "category": "brazilian_jiu_jitsu",
+      "url": "https://images.pexels.com/photos/15545734/pexels-photo-15545734.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Adults practicing BJJ, for the modalities bento section."
+    },
+    {
+      "category": "boxing_class",
+      "url": "https://images.pexels.com/photos/5535931/pexels-photo-5535931.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Athletes practicing boxing with punching bags indoors."
+    },
+    {
+      "category": "ballet_class",
+      "url": "https://images.pexels.com/photos/10640467/pexels-photo-10640467.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Ballet dancers practicing, highlighting the cultural academy aspect."
+    }
+  ],
+  "motion_and_interactions": {
+    "hover_states": "All buttons and interactive cards must have transform transitions (e.g., hover:-translate-y-1).",
+    "live_indicator": "Use 'animate-pulse' on the green dot in the schedule to show it is live.",
+    "scroll_effects": "Use subtle fade-in-up animations for sections as they scroll into view."
+  },
+  "instructions_to_main_agent": [
+    "Create a Hybrid Fullstack app (Marketing site + Admin dashboard).",
+    "Use pure HTML + Tailwind for marketing layouts (bento grids, overlapping elements), but use Shadcn for complex interactive components (forms, dialogs).",
+    "Schedule Logic: Implement logic that checks the current time in Brasília timezone (America/Sao_Paulo) and renders a blinking green dot on the ongoing class.",
+    "Include a prominent WhatsApp CTA 'Agendar aula experimental' linking to +55 21 98080-4225.",
+    "Include Instagram link (@ctwinnerrj) in header and footer.",
+    "Load Bebas Neue and Outfit fonts from Google Fonts.",
+    "The Footer MUST use the secondary logo (triangle with fist in black/orange/yellow). Look for it in the local assets. If absent, create a CSS representation or use a suitable icon placeholder.",
+    "The primary hero background should use the user's provided real photo if available locally. If not, fallback to the media_and_images.hero_background URL.",
+    "Build an Admin Dashboard (accessible via /admin) featuring CRUD capabilities for Schedules, Events, and Modalities.",
+    "Ensure all interactive elements have data-testid attributes for testing.",
+    "Maintain high contrast. Deep Cobalt Blue as primary anchor, Red as energetic accent."
+  ],
+  "pages_to_build": [
+    "Home: Hero Banner 'Lugar especial para pessoas especiais', Activities Bento, Values/About summary, Events snippet, WhatsApp CTA.",
+    "Activities: Detailed bento grid or list of modalities (Taekwondo, Jiu-Jitsu, Boxe, Muay-thai, Judô, Karatê, Teatro, Balé).",
+    "Schedule: Grid or List view (Day x Time x Professor) with the Live Blinking Dot.",
+    "About Us: History, Team, Values (Respect, Discipline, Inclusion), Space Structure timeline, Location Map (R. Lopes da Cruz, 61 - Méier, RJ).",
+    "Admin Dashboard: Secured CRUD panel for schedules, events, and modalities."
+  ]
+}
