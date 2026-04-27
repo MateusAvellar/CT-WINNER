@@ -197,18 +197,31 @@ export default function Home() {
               return (
                 <article
                   key={e.id}
-                  className="flex gap-4 border border-slate-200 p-5 transition hover:-translate-y-1 hover:border-[color:var(--ct-blue)]"
+                  className="group overflow-hidden border border-slate-200 transition hover:-translate-y-1 hover:border-[color:var(--ct-blue)]"
                   data-testid={`event-card-${e.id}`}
                 >
-                  <div className="flex min-w-[64px] flex-col items-center justify-center bg-[color:var(--ct-blue-dark)] px-3 py-3 text-white">
-                    <div className="font-display text-3xl leading-none">{day}</div>
-                    <div className="mt-1 text-[10px] uppercase tracking-widest">{month}</div>
-                  </div>
-                  <div>
-                    <h3 className="font-display text-xl uppercase leading-tight text-[color:var(--ct-blue-dark)]">
-                      {e.name}
-                    </h3>
-                    <p className="mt-1 text-xs text-slate-600 line-clamp-3">{e.description}</p>
+                  {e.image_url && (
+                    <div className="relative h-36 w-full overflow-hidden bg-slate-900">
+                      <img src={e.image_url} alt={e.name} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
+                      <div className="absolute left-3 top-3 flex flex-col items-center justify-center bg-[color:var(--ct-red)] px-2.5 py-1.5 text-white shadow">
+                        <div className="font-display text-xl leading-none">{day}</div>
+                        <div className="text-[9px] uppercase tracking-widest">{month}</div>
+                      </div>
+                    </div>
+                  )}
+                  <div className="flex gap-3 p-4">
+                    {!e.image_url && (
+                      <div className="flex min-w-[56px] flex-col items-center justify-center bg-[color:var(--ct-blue-dark)] px-2.5 py-2 text-white">
+                        <div className="font-display text-2xl leading-none">{day}</div>
+                        <div className="mt-0.5 text-[9px] uppercase tracking-widest">{month}</div>
+                      </div>
+                    )}
+                    <div>
+                      <h3 className="font-display text-lg uppercase leading-tight text-[color:var(--ct-blue-dark)]">
+                        {e.name}
+                      </h3>
+                      <p className="mt-1 text-xs text-slate-600 line-clamp-2">{e.description}</p>
+                    </div>
                   </div>
                 </article>
               );

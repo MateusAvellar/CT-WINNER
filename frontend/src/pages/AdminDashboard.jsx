@@ -11,7 +11,7 @@ const TABS = [
 
 const emptyForm = {
   schedule: { day: "segunda", start_time: "18:00", end_time: "19:00", modality: "", professor: "" },
-  events: { name: "", date: "", description: "", location: "CT Winner — Méier" },
+  events: { name: "", date: "", description: "", location: "CT Winner — Méier", image_url: "" },
   modalities: { name: "", description: "", target_audience: "", benefits: "", icon: "dumbbell", order: 0 },
 };
 
@@ -274,6 +274,7 @@ export default function AdminDashboard() {
                 <Field label="Data"><input type="date" className="input" required value={editing.form.date} onChange={(e)=>setEditing({...editing, form:{...editing.form, date:e.target.value}})} /></Field>
                 <Field label="Descrição"><textarea className="input min-h-[80px]" required value={editing.form.description} onChange={(e)=>setEditing({...editing, form:{...editing.form, description:e.target.value}})} /></Field>
                 <Field label="Local"><input className="input" value={editing.form.location || ""} onChange={(e)=>setEditing({...editing, form:{...editing.form, location:e.target.value}})} /></Field>
+                <Field label="Imagem (URL ou caminho em /images/...)"><input className="input" placeholder="/images/copa-winner.jpeg" value={editing.form.image_url || ""} onChange={(e)=>setEditing({...editing, form:{...editing.form, image_url:e.target.value}})} /></Field>
               </div>
             )}
 

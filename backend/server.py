@@ -112,12 +112,14 @@ class Event(BaseModel):
     date: str  # ISO date "YYYY-MM-DD"
     description: str
     location: Optional[str] = None
+    image_url: Optional[str] = None
 
 class EventIn(BaseModel):
     name: str
     date: str
     description: str
     location: Optional[str] = None
+    image_url: Optional[str] = None
 
 # ---------- Startup: seed admin + initial data ----------
 @app.on_event("startup")
@@ -194,7 +196,7 @@ async def on_startup():
     # Seed events if empty
     if await db.events.count_documents({}) == 0:
         seed_events = [
-            {"id": str(uuid.uuid4()), "name": "Copa Winner", "date": "2026-06-21", "description": "Torneio de Taekwondo que reúne grandes equipes do Rio de Janeiro. Um dia de competição, técnica e muita emoção no CT Winner.", "location": "CT Winner — Méier"},
+            {"id": str(uuid.uuid4()), "name": "Copa Winner", "date": "2026-05-24", "description": "Torneio de Taekwondo que reúne grandes equipes do Rio de Janeiro. Um dia de competição, técnica e muita emoção.", "location": "R. Dias da Cruz, 561 — Méier · Sport Club Mackenzie", "image_url": "/images/copa-winner.jpeg"},
         ]
         await db.events.insert_many(seed_events)
 

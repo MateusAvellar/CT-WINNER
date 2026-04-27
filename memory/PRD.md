@@ -41,6 +41,19 @@ Inclusão, saúde, educação e desenvolvimento social. Combate à visão estere
 - ✅ Fotos reais do CT Winner integradas
 - ✅ Testes passando 100% (backend + frontend)
 
+## Atualizações (iteração 3 - Abr 2026)
+- ✅ Copa Winner: data **24 de maio de 2026**, local **R. Dias da Cruz, 561 — Méier · Sport Club Mackenzie**
+- ✅ Cartaz oficial da Copa Winner integrado na página Eventos (imagem grande + CTA "Quero participar")
+- ✅ Modelo de evento ganhou campo `image_url` (CRUD admin também atualizado)
+- ✅ Nova seção **"Títulos & Momentos — O CT em imagens"** na página Sobre, com galeria mosaico:
+  - Equipe CT Winner (imagem principal grande)
+  - Atletas formados · Faixas-pretas
+  - Competições (títulos)
+  - Combate infantil em torneio
+  - Sala principal
+- ✅ Seção "Nosso Espaço" agora usa a foto da equipe em destaque
+- ✅ Home: card do evento Copa Winner mostra o cartaz como thumbnail
+
 ## Atualizações (iteração 2 - Abr 2026)
 - ✅ Home mais compacto (menos scroll): `py-24` → `py-14/16`, valores integrados
 - ✅ Vermelho mais intenso: `#E63946` → `#E10600`
