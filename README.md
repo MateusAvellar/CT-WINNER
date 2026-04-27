@@ -2,7 +2,7 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title> Site CT Winner</title>
+    
 </head>
 <body style="background-color: #102050;"> <img src="frontend\public\images\readmeimg.png" alt="Logo CT Winner - Esporte, Cultura, Inclusão">
 
